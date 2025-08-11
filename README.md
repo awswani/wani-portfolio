@@ -24,4 +24,4 @@ Nashville native passionate about cloud computing and DevOps. Currently pursuing
 ## 📧 Contact
 - Email: wani.lado615@gmail.com
 - LinkedIn: [wani-lado615](https://linkedin.com/in/wani-lado615)
-- Phone: (615) 821-4801(https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Phone: (615) 821-4801
