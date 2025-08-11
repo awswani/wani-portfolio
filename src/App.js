@@ -1,23 +1,472 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Cloud, Download, ExternalLink, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import './App.css';
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
+  // Handle scroll for active section and header background
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'projects', 'resume'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-white relative overflow-x-hidden">
+      {/* Animated Cloud Background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        {[...Array(12)].map((_, i) => (
+          <Cloud
+            key={i}
+            className={`absolute text-white animate-float-${(i % 4) + 1}`}
+            size={40 + (i % 4) * 15}
+            style={{
+              top: `${5 + (i % 6) * 15}%`,
+              left: `-100px`,
+              animationDelay: `${i * 3}s`,
+              opacity: 0.1 + (i % 3) * 0.1
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-lg border-b border-purple-500/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex items-center space-x-4">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center font-bold text-lg">
+                WL
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Wani Lado
+              </span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-8">
+                {['home', 'about', 'projects', 'resume'].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item)}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                      activeSection === item
+                        ? 'bg-purple-600 text-white'
+                        : 'text-purple-200 hover:text-white hover:bg-purple-600/50'
+                    }`}
+                  >
+                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 text-purple-200 hover:text-white"
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-black/40 backdrop-blur-lg">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {['home', 'about', 'projects', 'resume'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 ${
+                    activeSection === item
+                      ? 'bg-purple-600 text-white'
+                      : 'text-purple-200 hover:text-white hover:bg-purple-600/50'
+                  }`}
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8">
+            <h1 className="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent animate-pulse">
+              Wani Lado
+            </h1>
+            <p className="text-2xl md:text-3xl text-purple-200 mb-6">
+              Cloud Engineer & DevOps Enthusiast
+            </p>
+            <p className="text-lg text-purple-300 max-w-2xl mx-auto leading-relaxed">
+              Passionate about leveraging cloud technologies and automation to build scalable, 
+              efficient infrastructure solutions. Currently pursuing AWS certifications and 
+              hands-on cloud engineering experience.
+            </p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => scrollToSection('projects')}
+              className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
+            >
+              View Projects
+            </button>
+            <button
+              onClick={() => scrollToSection('resume')}
+              className="px-8 py-3 border-2 border-purple-500 rounded-full font-semibold hover:bg-purple-600 transform hover:scale-105 transition-all duration-300"
+            >
+              View Resume
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 px-4 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            About Me
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <p className="text-lg text-purple-200 leading-relaxed">
+                Nashville native through and through! Born and raised in Music City, I'm a dedicated Cloud Computing major at WGU with hands-on experience in IT support and system administration. What sets me apart is how my lifelong passion for sports has shaped my approach to technology and teamwork.
+              </p>
+              
+              <p className="text-lg text-purple-200 leading-relaxed">
+                I'm a huge sports enthusiast - NFL, NBA, Futbol, and MLB are my outlets outside of work. Whether I'm cheering on the Titans, following the latest NBA playoffs, catching a soccer match, or analyzing MLB stats, sports have taught me invaluable lessons about discipline, strategy, resilience, and most importantly, teamwork. These principles drive everything I do in tech.
+              </p>
+              <p className="text-lg text-purple-200 leading-relaxed">
+    With over two years of experience in IT support and a strong foundation in AWS, ServiceNow, and system administration, I bring that same collaborative spirit and strategic thinking to cloud engineering. Just like in sports, successful DevOps is all about coordination, communication, and executing plays as a team. I'm passionate about transitioning into cloud engineering roles where I can solve real-world problems through automation and teamwork.
+  </p>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <div className="flex items-center gap-2 text-purple-300">
+                  <MapPin size={20} />
+                  <span>Nashville, TN</span>
+                </div>
+                <div className="flex items-center gap-2 text-purple-300">
+                  <Phone size={20} />
+                  <span>(615) 821-4801</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-4 text-purple-300">☁️ Cloud Platforms</h3>
+                <ul className="space-y-2 text-purple-200">
+                  <li>Amazon Web Services (AWS)</li>
+                  <li>EC2, S3, Lambda, IAM</li>
+                  <li>VPC, CloudWatch</li>
+                  <li>Infrastructure as Code</li>
+                </ul>
+              </div>
+              
+              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-4 text-purple-300">🛠️ DevOps & Tools</h3>
+                <ul className="space-y-2 text-purple-200">
+                  <li>ServiceNow, SCCM</li>
+                  <li>Active Directory</li>
+                  <li>BeyondTrust, Okta</li>
+                  <li>PowerShell, Linux</li>
+                </ul>
+              </div>
+              
+              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-4 text-purple-300">🎓 Certifications</h3>
+                <ul className="space-y-2 text-purple-200">
+                  <li>AWS Solutions Architect</li>
+                  <li>AWS Cloud Practitioner</li>
+                  <li>CompTIA Network+</li>
+                  <li>CompTIA Security+</li>
+                </ul>
+              </div>
+              
+              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-4 text-purple-300">💼 Experience</h3>
+                <ul className="space-y-2 text-purple-200">
+                  <li>2+ Years IT Support</li>
+                  <li>Tier 2 Technical Support</li>
+                  <li>System Administration</li>
+                  <li>Project Collaboration</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-4 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Featured Projects
+          </h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "AWS Infrastructure Automation",
+                description: "Automated cloud infrastructure deployment using Terraform and AWS services with monitoring and scaling capabilities.",
+                tech: ["AWS", "Terraform", "CloudWatch", "EC2"],
+                icon: "🏗️"
+              },
+              {
+                title: "CI/CD Pipeline Implementation", 
+                description: "Built complete CI/CD pipeline with automated testing and deployment to AWS EC2 instances.",
+                tech: ["Jenkins", "Docker", "GitHub Actions", "AWS"],
+                icon: "🚀"
+              },
+              {
+                title: "Serverless Application Stack",
+                description: "Created and deployed serverless applications using AWS Lambda, API Gateway, and DynamoDB.",
+                tech: ["Lambda", "API Gateway", "DynamoDB", "Python"],
+                icon: "⚡"
+              },
+              {
+                title: "Monitoring & Alerting System",
+                description: "Implemented comprehensive monitoring solution with real-time alerting and dashboard visualization.",
+                tech: ["CloudWatch", "SNS", "Grafana", "Python"],
+                icon: "📊"
+              },
+              {
+                title: "Containerized Web Application",
+                description: "Dockerized full-stack application with automated deployment and load balancing on AWS ECS.",
+                tech: ["Docker", "ECS", "Load Balancer", "Auto Scaling"],
+                icon: "🌐"
+              },
+              {
+                title: "Infrastructure as Code Templates",
+                description: "Collection of reusable CloudFormation and Terraform templates following AWS best practices.",
+                tech: ["CloudFormation", "Terraform", "AWS", "Best Practices"],
+                icon: "📝"
+              }
+            ].map((project, index) => (
+              <div
+                key={index}
+                className="bg-black/30 backdrop-blur-lg rounded-xl overflow-hidden border border-purple-500/20 hover:border-purple-500/40 transform hover:scale-105 transition-all duration-300 group"
+              >
+                <div className="p-8 text-center">
+                  <div className="text-4xl mb-4">{project.icon}</div>
+                  <h3 className="text-xl font-bold mb-3 text-purple-200 group-hover:text-white transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-purple-300 mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center mb-4">
+                    {project.tech.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1 bg-purple-600/30 rounded-full text-sm text-purple-200"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-3 justify-center">
+                    <button className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors">
+                      <ExternalLink size={16} />
+                      Demo
+                    </button>
+                    <button className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors">
+                      <Github size={16} />
+                      Code
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Resume Section */}
+      <section id="resume" className="py-20 px-4 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Resume
+          </h2>
+          
+          <div className="bg-black/30 backdrop-blur-lg rounded-xl p-8 border border-purple-500/20">
+            {/* Download Resume Button */}
+            <div className="flex justify-center mb-8">
+              <button className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                <Download size={20} />
+                Download Resume
+              </button>
+            </div>
+
+            {/* Professional Experience */}
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold mb-6 text-purple-300">Professional Experience</h3>
+              
+              <div className="space-y-6">
+                <div className="border-l-4 border-purple-500 pl-6">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                    <h4 className="text-xl font-semibold text-white">Client Support Specialist Sr (IAS)</h4>
+                    <span className="text-purple-300">05/2024 – Present</span>
+                  </div>
+                  <p className="text-purple-200 mb-2">Robert Half w/Leidos QTC • Nashville, TN</p>
+                  <ul className="text-purple-300 space-y-1">
+                    <li>• Provide Tier 2 technical support using ServiceNow, Jabber, and BeyondTrust</li>
+                    <li>• Configure new hardware using SCCM and manage RSA token deployments</li>
+                    <li>• Resolve complex hardware, software, and network issues</li>
+                    <li>• Collaborate on cross-functional IT projects and system deployments</li>
+                  </ul>
+                </div>
+
+                <div className="border-l-4 border-purple-500 pl-6">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                    <h4 className="text-xl font-semibold text-white">Service Desk Analyst</h4>
+                    <span className="text-purple-300">11/2023 – 03/2024</span>
+                  </div>
+                  <p className="text-purple-200 mb-2">TEKsystems w/LKQ Corporation • Nashville, TN</p>
+                  <ul className="text-purple-300 space-y-1">
+                    <li>• Managed IT assets for 5,000+ employees at LKQ NAHQ</li>
+                    <li>• Administered Active Directory user accounts and Mobile Device Management</li>
+                    <li>• Utilized Microsoft SCCM for OS imaging and software installation</li>
+                    <li>• Implemented BeyondTrust and Okta for secure access management</li>
+                  </ul>
+                </div>
+
+                <div className="border-l-4 border-purple-500 pl-6">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                    <h4 className="text-xl font-semibold text-white">Help Desk Technician</h4>
+                    <span className="text-purple-300">02/2023 – 07/2023</span>
+                  </div>
+                  <p className="text-purple-200 mb-2">Apex Systems w/Dell/Boeing • Nashville Metropolitan Area</p>
+                  <ul className="text-purple-300 space-y-1">
+                    <li>• Serviced internal and external clients within Fortune 500 network</li>
+                    <li>• Troubleshot DNS, proxy, and connectivity issues using PowerShell</li>
+                    <li>• Provided remote technical assistance via DameWare and Skype</li>
+                    <li>• Managed ServiceNow ticketing system for efficient issue resolution</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Education */}
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold mb-6 text-purple-300">Education</h3>
+              <div className="space-y-4">
+                <div className="border-l-4 border-purple-500 pl-6">
+                  <h4 className="text-xl font-semibold text-white">Bachelor of Science in Cloud Computing</h4>
+                  <p className="text-purple-200">Western Governors University • 2022 – 2025</p>
+                </div>
+                <div className="border-l-4 border-purple-500 pl-6">
+                  <h4 className="text-xl font-semibold text-white">Systems Administration & Management</h4>
+                  <p className="text-purple-200">Nashville State Community College • 2021 – 2022</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Certifications */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-purple-300">Certifications</h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  "AWS Certified Solutions Architect Associate",
+                  "CompTIA Security+ (Feb 2025)",
+                  "CompTIA Network+ (Jan 2024)", 
+                  "AWS Certified Cloud Practitioner (Sept 2022)",
+                  "ITIL Foundation Level (Feb 2023)",
+                  "LPI Linux Essentials (Dec 2022)"
+                ].map((cert, index) => (
+                  <div key={index} className="bg-purple-600/20 rounded-lg p-3">
+                    <span className="text-purple-200">{cert}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 px-4 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Let's Connect
+          </h2>
+          <p className="text-xl text-purple-200 mb-8">
+            Ready to discuss cloud engineering opportunities and collaborate on innovative projects
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a
+              href="mailto:wani.lado615@gmail.com"
+              className="flex items-center gap-3 px-6 py-3 bg-black/30 backdrop-blur-lg rounded-full border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 text-purple-200 hover:text-white"
+            >
+              <Mail size={20} />
+              wani.lado615@gmail.com
+            </a>
+            <a
+              href="https://linkedin.com/in/wani-lado615"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-6 py-3 bg-black/30 backdrop-blur-lg rounded-full border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 text-purple-200 hover:text-white"
+            >
+              <Linkedin size={20} />
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/wani-lado615"
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-6 py-3 bg-black/30 backdrop-blur-lg rounded-full border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 text-purple-200 hover:text-white"
+            >
+              <Github size={20} />
+              GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-4 border-t border-purple-500/20 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-purple-300">
+            © 2025 Wani Lado. Built with passion for cloud computing and DevOps excellence.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
