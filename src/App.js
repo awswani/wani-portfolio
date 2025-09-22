@@ -5,6 +5,7 @@ import './App.css';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
 
   // Handle scroll for active section and header background
   useEffect(() => {
@@ -130,12 +131,10 @@ function App() {
               Wani Lado
             </h1>
             <p className="text-2xl md:text-3xl text-purple-200 mb-6">
-              Cloud Engineer & DevOps Enthusiast
+              Cloud Security Engineer
             </p>
             <p className="text-lg text-purple-300 max-w-2xl mx-auto leading-relaxed">
-              Passionate about leveraging cloud technologies and automation to build scalable, 
-              efficient infrastructure solutions. Currently pursuing AWS certifications and 
-              hands-on cloud engineering experience.
+              Cloud security engineer specializing in IAM, AWS security, and enterprise compliance. Building secure cloud infrastructure to protect critical systems.
             </p>
           </div>
           
@@ -164,18 +163,18 @@ function App() {
           </h2>
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <p className="text-lg text-purple-200 leading-relaxed">
+            <div className="space-y-8">
+              <p className="text-base text-purple-200 leading-relaxed">
                 Nashville native through and through! Born and raised in Music City, I'm a dedicated Cloud Computing major at WGU with hands-on experience in IT support and system administration. What sets me apart is how my lifelong passion for sports has shaped my approach to technology and teamwork.
               </p>
-              
-              <p className="text-lg text-purple-200 leading-relaxed">
-                I'm a huge sports enthusiast - NFL, NBA, Futbol, and MLB are my outlets outside of work. Whether I'm cheering on the Titans, following the latest NBA playoffs, catching a soccer match, or analyzing MLB stats, sports have taught me invaluable lessons about discipline, strategy, resilience, and most importantly, teamwork. These principles drive everything I do in tech.
+
+              <p className="text-base text-purple-200 leading-relaxed">
+                I'm a huge sports enthusiast - NFL, NBA, Futbol, and MLB are my outlets outside of work. Whether I'm cheering on the Saints, following the latest NBA playoffs, catching a soccer match, or analyzing MLB stats, sports have taught me invaluable lessons about discipline, strategy, resilience, and most importantly, teamwork. These principles drive everything I do in tech.
               </p>
-              <p className="text-lg text-purple-200 leading-relaxed">
-    With over two years of experience in IT support and a strong foundation in AWS, ServiceNow, and system administration, I bring that same collaborative spirit and strategic thinking to cloud engineering. Just like in sports, successful DevOps is all about coordination, communication, and executing plays as a team. I'm passionate about transitioning into cloud engineering roles where I can solve real-world problems through automation and teamwork.
-  </p>
-              <div className="flex flex-wrap gap-4 pt-4">
+              <p className="text-base text-purple-200 leading-relaxed">
+                With over two years of experience in IT support and a strong foundation in AWS, identity and access management, and security administration, I bring that same collaborative spirit and strategic thinking to cloud security engineering. My hands-on experience with Entra ID, CyberArk PAM, Microsoft Intune, and enterprise security tools has given me deep insight into protecting privileged access and securing cloud environments. Just like in sports, successful cloud security is all about coordination, communication, and executing defense strategies as a team. I'm passionate about advancing into cloud security engineering roles where I can solve real-world security challenges and protect critical infrastructure through strategic security implementations.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-6">
                 <div className="flex items-center gap-2 text-purple-300">
                   <MapPin size={20} />
                   <span>Nashville, TN</span>
@@ -187,28 +186,29 @@ function App() {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 h-full">
                 <h3 className="text-xl font-semibold mb-4 text-purple-300">☁️ Cloud Platforms</h3>
                 <ul className="space-y-2 text-purple-200">
                   <li>Amazon Web Services (AWS)</li>
                   <li>EC2, S3, Lambda, IAM</li>
-                  <li>VPC, CloudWatch</li>
-                  <li>Infrastructure as Code</li>
+                  <li>CloudTrail, CloudWatch, SNS</li>
+                  <li>Route 53, VPC</li>
                 </ul>
               </div>
               
-              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
-                <h3 className="text-xl font-semibold mb-4 text-purple-300">🛠️ DevOps & Tools</h3>
+              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 h-full">
+                <h3 className="text-xl font-semibold mb-4 text-purple-300">🔐 Identity & Security Tools</h3>
                 <ul className="space-y-2 text-purple-200">
-                  <li>ServiceNow, SCCM</li>
-                  <li>Active Directory</li>
+                  <li>Entra ID (Azure AD)</li>
+                  <li>CyberArk PAM</li>
+                  <li>Microsoft Intune</li>
                   <li>BeyondTrust, Okta</li>
-                  <li>PowerShell, Linux</li>
+                  <li>Trellix Encryption</li>
                 </ul>
               </div>
               
-              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 h-full">
                 <h3 className="text-xl font-semibold mb-4 text-purple-300">🎓 Certifications</h3>
                 <ul className="space-y-2 text-purple-200">
                   <li>AWS Solutions Architect</li>
@@ -218,13 +218,13 @@ function App() {
                 </ul>
               </div>
               
-              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+              <div className="bg-black/30 backdrop-blur-lg rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 h-full">
                 <h3 className="text-xl font-semibold mb-4 text-purple-300">💼 Experience</h3>
                 <ul className="space-y-2 text-purple-200">
                   <li>2+ Years IT Support</li>
-                  <li>Tier 2 Technical Support</li>
-                  <li>System Administration</li>
-                  <li>Project Collaboration</li>
+                  <li>Tier 2 Security Support</li>
+                  <li>IAM Administration</li>
+                  <li>HIPAA Compliance</li>
                 </ul>
               </div>
             </div>
@@ -242,15 +242,15 @@ function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "AWS Infrastructure Automation",
-                description: "Automated cloud infrastructure deployment using Terraform and AWS services with monitoring and scaling capabilities.",
-                tech: ["AWS", "Terraform", "CloudWatch", "EC2"],
-                icon: "🏗️"
+                title: "Security Monitoring System",
+                description: "Built comprehensive security detection system using AWS CloudTrail, CloudWatch, and SNS to monitor and alert on sensitive data access. Implemented real-time notifications for secrets retrieval with automated email alerts and troubleshooting capabilities.",
+                tech: ["CloudTrail", "CloudWatch", "SNS", "Secrets Manager"],
+                icon: "🔐"
               },
               {
-                title: "CI/CD Pipeline Implementation", 
-                description: "Built complete CI/CD pipeline with automated testing and deployment to AWS EC2 instances.",
-                tech: ["Jenkins", "Docker", "GitHub Actions", "AWS"],
+                title: "Portfolio Website Infrastructure",
+                description: "Designed and deployed scalable portfolio website using React and AWS Amplify with automated CI/CD pipeline. Configured Route 53 for DNS management, CloudFront CDN for global distribution, and SSL certificates for secure HTTPS. Implemented GitHub integration for continuous deployment with custom domain management.",
+                tech: ["AWS Amplify", "Route 53", "CloudFront", "GitHub Actions"],
                 icon: "🚀"
               },
               {
@@ -301,14 +301,26 @@ function App() {
                     ))}
                   </div>
                   <div className="flex gap-3 justify-center">
-                    <button className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors">
-                      <ExternalLink size={16} />
-                      Demo
-                    </button>
-                    <button className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors">
-                      <Github size={16} />
-                      Code
-                    </button>
+                    {project.title === "Security Monitoring System" ? (
+                      <button
+                        onClick={() => setIsPdfModalOpen(true)}
+                        className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                        Documentation
+                      </button>
+                    ) : (
+                      <>
+                        <button className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors">
+                          <ExternalLink size={16} />
+                          Demo
+                        </button>
+                        <button className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors">
+                          <Github size={16} />
+                          Code
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -327,10 +339,14 @@ function App() {
           <div className="bg-black/30 backdrop-blur-lg rounded-xl p-8 border border-purple-500/20">
             {/* Download Resume Button */}
             <div className="flex justify-center mb-8">
-              <button className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+              <a
+                href="/Lado_Wani_Resume.pdf"
+                download="Lado_Wani_Resume.pdf"
+                className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
+              >
                 <Download size={20} />
                 Download Resume
-              </button>
+              </a>
             </div>
 
             {/* Professional Experience */}
@@ -340,16 +356,31 @@ function App() {
               <div className="space-y-6">
                 <div className="border-l-4 border-purple-500 pl-6">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                    <h4 className="text-xl font-semibold text-white">Client Support Specialist Sr (IAS)</h4>
+                    <h4 className="text-xl font-semibold text-white">Client Support Specialist Sr (Tier 2)/ Biomedical IT Support</h4>
                     <span className="text-purple-300">05/2024 – Present</span>
                   </div>
-                  <p className="text-purple-200 mb-2">Robert Half w/Leidos QTC • Nashville, TN</p>
-                  <ul className="text-purple-300 space-y-1">
-                    <li>• Provide Tier 2 technical support using ServiceNow, Jabber, and BeyondTrust</li>
-                    <li>• Configure new hardware using SCCM and manage RSA token deployments</li>
-                    <li>• Resolve complex hardware, software, and network issues</li>
-                    <li>• Collaborate on cross-functional IT projects and system deployments</li>
-                  </ul>
+                  <p className="text-purple-200 mb-2">Robert Half w/Leidos QTC Health Services • Nashville, TN</p>
+
+                  <div className="mb-3">
+                    <p className="text-purple-200 font-bold mb-2">Enterprise Tier 2 IT Support</p>
+                    <ul className="text-purple-300 space-y-1 ml-2">
+                      <li>• Provided escalation support for 200+ on-site and remote staff, resolving advanced networking, application, and access issues</li>
+                      <li>• Secured endpoints and enterprise data with Trellix encryption and recovery key management</li>
+                      <li>• Integrated CyberArk PAM with Active Directory to safeguard privileged accounts and strengthen enterprise access security</li>
+                      <li>• Automated setup and troubleshooting workflows with PowerShell, reducing configuration and support times by 40%</li>
+                      <li>• Delivered secure remote assistance through Bomgar, improving resolution time and end-user satisfaction</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p className="text-purple-200 font-bold mb-2">Biomedical IT Support</p>
+                    <ul className="text-purple-300 space-y-1 ml-2">
+                      <li>• Supported clinical and biomedical systems across multiple clinics, ensuring HIPAA compliance and uptime for patient-critical devices</li>
+                      <li>• Administered Entra ID (Azure AD) for user and device management, enforcing compliance and role-based access controls</li>
+                      <li>• Deployed and imaged devices using Microsoft Intune, standardizing secure configurations and device lifecycle management</li>
+                      <li>• Partnered with clinical staff to resolve device/application issues, ensuring minimal disruption to patient care</li>
+                    </ul>
+                  </div>
                 </div>
 
                 <div className="border-l-4 border-purple-500 pl-6">
@@ -463,10 +494,34 @@ function App() {
       <footer className="py-8 px-4 border-t border-purple-500/20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-purple-300">
-            © 2025 Wani Lado. Built with passion for cloud computing and DevOps excellence.
+            © 2025 Wani Lado. Built with passion for cloud computing and cybersecurity innovation.
           </p>
         </div>
       </footer>
+
+      {/* PDF Modal */}
+      {isPdfModalOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl w-full max-w-6xl h-full max-h-[90vh] relative overflow-hidden">
+            <div className="flex justify-between items-center p-4 bg-gray-100 border-b">
+              <h3 className="text-xl font-semibold text-gray-800">Security Monitoring System Documentation</h3>
+              <button
+                onClick={() => setIsPdfModalOpen(false)}
+                className="p-2 hover:bg-gray-200 rounded-full transition-colors"
+              >
+                <X size={24} className="text-gray-600" />
+              </button>
+            </div>
+            <div className="w-full h-full">
+              <iframe
+                src="/legendary-aws-security-monitoring.pdf"
+                className="w-full h-full border-0"
+                title="Security Monitoring Documentation"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
