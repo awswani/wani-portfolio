@@ -5,7 +5,6 @@ import './App.css';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
 
   // Handle scroll for active section and header background
   useEffect(() => {
@@ -302,13 +301,15 @@ function App() {
                   </div>
                   <div className="flex gap-3 justify-center">
                     {project.title === "Security Monitoring System" ? (
-                      <button
-                        onClick={() => setIsPdfModalOpen(true)}
+                      <a
+                        href="/legendary-aws-security-monitoring.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors"
                       >
                         <ExternalLink size={16} />
                         Documentation
-                      </button>
+                      </a>
                     ) : (
                       <>
                         <button className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors">
@@ -499,35 +500,6 @@ function App() {
         </div>
       </footer>
 
-      {/* PDF Modal */}
-      {isPdfModalOpen && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl w-full max-w-6xl h-full max-h-[90vh] relative overflow-hidden">
-            <div className="flex justify-between items-center p-4 bg-gray-100 border-b">
-              <h3 className="text-xl font-semibold text-gray-800">Security Monitoring System Documentation</h3>
-              <button
-                onClick={() => setIsPdfModalOpen(false)}
-                className="p-2 hover:bg-gray-200 rounded-full transition-colors"
-              >
-                <X size={24} className="text-gray-600" />
-              </button>
-            </div>
-            <div className="w-full h-full">
-              <object
-                data="/legendary-aws-security-monitoring.pdf"
-                type="application/pdf"
-                className="w-full h-full"
-              >
-                <embed
-                  src="/legendary-aws-security-monitoring.pdf"
-                  type="application/pdf"
-                  className="w-full h-full"
-                />
-              </object>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
