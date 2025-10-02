@@ -513,11 +513,17 @@ function App() {
               </button>
             </div>
             <div className="w-full h-full">
-              <iframe
-                src="/legendary-aws-security-monitoring.pdf"
-                className="w-full h-full border-0"
-                title="Security Monitoring Documentation"
-              />
+              <object
+                data="/legendary-aws-security-monitoring.pdf"
+                type="application/pdf"
+                className="w-full h-full"
+              >
+                <embed
+                  src="/legendary-aws-security-monitoring.pdf"
+                  type="application/pdf"
+                  className="w-full h-full"
+                />
+              </object>
             </div>
           </div>
         </div>
