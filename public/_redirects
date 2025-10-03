@@ -1,3 +1,0 @@
-# SPA fallback - only redirect 404s to index.html
-# This allows static files like PDFs to be served normally
-/*    /index.html   404
