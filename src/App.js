@@ -9,7 +9,7 @@ function App() {
   // Handle scroll for active section and header background
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'resume'];
+      const sections = ['home', 'about', 'projects', 'resume', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -72,7 +72,7 @@ function App() {
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                {['home', 'about', 'projects', 'resume'].map((item) => (
+                {['home', 'about', 'projects', 'resume', 'contact'].map((item) => (
                   <button
                     key={item}
                     onClick={() => scrollToSection(item)}
@@ -104,7 +104,7 @@ function App() {
         {isMenuOpen && (
           <div className="md:hidden bg-black/40 backdrop-blur-lg">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {['home', 'about', 'projects', 'resume'].map((item) => (
+              {['home', 'about', 'projects', 'resume', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
@@ -452,41 +452,137 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Let's Connect
+      <section id="contact" className="py-20 px-4 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Get In Touch
           </h2>
-          <p className="text-xl text-purple-200 mb-8">
-            Ready to discuss cloud engineering opportunities and collaborate on innovative projects
+          <p className="text-xl text-purple-200 mb-12 text-center">
+            Ready to discuss cloud security opportunities and collaborate on innovative projects
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a
-              href="mailto:wani.lado615@gmail.com"
-              className="flex items-center gap-3 px-6 py-3 bg-black/30 backdrop-blur-lg rounded-full border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 text-purple-200 hover:text-white"
-            >
-              <Mail size={20} />
-              wani.lado615@gmail.com
-            </a>
-            <a
-              href="https://linkedin.com/in/wani-lado615"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 bg-black/30 backdrop-blur-lg rounded-full border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 text-purple-200 hover:text-white"
-            >
-              <Linkedin size={20} />
-              LinkedIn
-            </a>
-            <a
-              href="https://github.com/wani-lado615"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 bg-black/30 backdrop-blur-lg rounded-full border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 text-purple-200 hover:text-white"
-            >
-              <Github size={20} />
-              GitHub
-            </a>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Contact Info */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold text-purple-300 mb-6">Contact Information</h3>
+
+              <div className="space-y-4">
+                <a
+                  href="mailto:wani.lado615@gmail.com"
+                  className="flex items-center gap-4 p-4 bg-black/30 backdrop-blur-lg rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 text-purple-200 hover:text-white group"
+                >
+                  <div className="p-3 bg-purple-600/20 rounded-lg group-hover:bg-purple-600/30 transition-colors">
+                    <Mail size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-purple-300">Email</p>
+                    <p className="font-medium">wani.lado615@gmail.com</p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://linkedin.com/in/wani-lado615"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-4 bg-black/30 backdrop-blur-lg rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 text-purple-200 hover:text-white group"
+                >
+                  <div className="p-3 bg-purple-600/20 rounded-lg group-hover:bg-purple-600/30 transition-colors">
+                    <Linkedin size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-purple-300">LinkedIn</p>
+                    <p className="font-medium">linkedin.com/in/wani-lado615</p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://github.com/wani-lado615"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-4 bg-black/30 backdrop-blur-lg rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 text-purple-200 hover:text-white group"
+                >
+                  <div className="p-3 bg-purple-600/20 rounded-lg group-hover:bg-purple-600/30 transition-colors">
+                    <Github size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-purple-300">GitHub</p>
+                    <p className="font-medium">github.com/wani-lado615</p>
+                  </div>
+                </a>
+
+                <div className="flex items-center gap-4 p-4 bg-black/30 backdrop-blur-lg rounded-xl border border-purple-500/20">
+                  <div className="p-3 bg-purple-600/20 rounded-lg">
+                    <MapPin size={24} className="text-purple-200" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-purple-300">Location</p>
+                    <p className="font-medium text-purple-200">Nashville, TN</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 p-4 bg-black/30 backdrop-blur-lg rounded-xl border border-purple-500/20">
+                  <div className="p-3 bg-purple-600/20 rounded-lg">
+                    <Phone size={24} className="text-purple-200" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-purple-300">Phone</p>
+                    <p className="font-medium text-purple-200">(615) 821-4801</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="bg-black/30 backdrop-blur-lg rounded-xl p-8 border border-purple-500/20">
+              <h3 className="text-2xl font-semibold text-purple-300 mb-6">Send a Message</h3>
+              <form className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-purple-300 mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="w-full px-4 py-3 bg-black/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-400/50 focus:outline-none focus:border-purple-500 transition-colors"
+                    placeholder="Your name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-purple-300 mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full px-4 py-3 bg-black/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-400/50 focus:outline-none focus:border-purple-500 transition-colors"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-purple-300 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    className="w-full px-4 py-3 bg-black/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-400/50 focus:outline-none focus:border-purple-500 transition-colors resize-none"
+                    placeholder="Tell me about your project or opportunity..."
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
