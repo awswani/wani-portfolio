@@ -514,7 +514,7 @@ function App() {
             </div>
             <div className="w-full h-full">
               <iframe
-                src="/legendary-aws-security-monitoring.pdf"
+                src="https://docs.google.com/viewer?url=https://cloudwani.tech/legendary-aws-security-monitoring.pdf&embedded=true"
                 className="w-full h-full border-0"
                 title="Security Monitoring Documentation"
               />
