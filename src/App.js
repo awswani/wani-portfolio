@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Cloud, Download, ExternalLink, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+import { Menu, X, Cloud, Download, ExternalLink, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import './App.css';
 
 function App() {
@@ -177,10 +177,6 @@ function App() {
                 <div className="flex items-center gap-2 text-purple-300">
                   <MapPin size={20} />
                   <span>Nashville, TN</span>
-                </div>
-                <div className="flex items-center gap-2 text-purple-300">
-                  <Phone size={20} />
-                  <span>(615) 821-4801</span>
                 </div>
               </div>
             </div>
@@ -520,15 +516,6 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 p-4 bg-black/30 backdrop-blur-lg rounded-xl border border-purple-500/20">
-                  <div className="p-3 bg-purple-600/20 rounded-lg">
-                    <Phone size={24} className="text-purple-200" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-purple-300">Phone</p>
-                    <p className="font-medium text-purple-200">(615) 821-4801</p>
-                  </div>
-                </div>
               </div>
             </div>
 
