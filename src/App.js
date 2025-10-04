@@ -295,7 +295,8 @@ function App() {
                 title: "Serverless Contact Form",
                 description: "Built fully serverless contact form using AWS Lambda, SES, and Function URLs. Integrated with React frontend for real-time form submissions with email notifications. Implemented CORS configuration, error handling, and success feedback to users.",
                 tech: ["Lambda", "SES", "Function URL", "React"],
-                icon: "📧"
+                icon: "📧",
+                github: "https://github.com/awswani/serverless-contact-form"
               },
               {
                 title: "Containerized Web Application",
@@ -342,6 +343,16 @@ function App() {
                       >
                         <ExternalLink size={16} />
                         View Documentation
+                      </a>
+                    ) : project.github ? (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors"
+                      >
+                        <Github size={16} />
+                        View on GitHub
                       </a>
                     ) : (
                       <>
