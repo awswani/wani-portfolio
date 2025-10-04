@@ -292,10 +292,10 @@ function App() {
                 icon: "⚡"
               },
               {
-                title: "Monitoring & Alerting System",
-                description: "Implemented comprehensive monitoring solution with real-time alerting and dashboard visualization.",
-                tech: ["CloudWatch", "SNS", "Grafana", "Python"],
-                icon: "📊"
+                title: "Serverless Contact Form",
+                description: "Built fully serverless contact form using AWS Lambda, SES, and Function URLs. Integrated with React frontend for real-time form submissions with email notifications. Implemented CORS configuration, error handling, and success feedback to users.",
+                tech: ["Lambda", "SES", "Function URL", "React"],
+                icon: "📧"
               },
               {
                 title: "Containerized Web Application",
