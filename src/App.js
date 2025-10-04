@@ -277,7 +277,8 @@ function App() {
                 title: "Security Monitoring System",
                 description: "Built comprehensive security detection system using AWS CloudTrail, CloudWatch, and SNS to monitor and alert on sensitive data access. Implemented real-time notifications for secrets retrieval with automated email alerts and troubleshooting capabilities.",
                 tech: ["CloudTrail", "CloudWatch", "SNS", "Secrets Manager"],
-                icon: "🔐"
+                icon: "🔐",
+                github: "https://github.com/awswani/aws-security-monitoring"
               },
               {
                 title: "Portfolio Website Infrastructure",
@@ -335,17 +336,7 @@ function App() {
                     ))}
                   </div>
                   <div className="flex gap-3 justify-center">
-                    {project.title === "Security Monitoring System" ? (
-                      <a
-                        href="/legendary-aws-security-monitoring.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-purple-300 hover:text-white transition-colors"
-                      >
-                        <ExternalLink size={16} />
-                        View Documentation
-                      </a>
-                    ) : project.github ? (
+                    {project.github ? (
                       <a
                         href={project.github}
                         target="_blank"
