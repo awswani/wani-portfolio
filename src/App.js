@@ -283,7 +283,8 @@ function App() {
                 title: "Portfolio Website Infrastructure",
                 description: "Designed and deployed scalable portfolio website using React and AWS Amplify with automated CI/CD pipeline. Configured Route 53 for DNS management, CloudFront CDN for global distribution, and SSL certificates for secure HTTPS. Implemented GitHub integration for continuous deployment with custom domain management.",
                 tech: ["AWS Amplify", "Route 53", "CloudFront", "GitHub Actions"],
-                icon: "🚀"
+                icon: "🚀",
+                github: "https://github.com/awswani/wani-portfolio"
               },
               {
                 title: "Serverless Application Stack",
