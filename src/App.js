@@ -288,10 +288,11 @@ function App() {
                 github: "https://github.com/awswani/wani-portfolio"
               },
               {
-                title: "Serverless Application Stack",
-                description: "Created and deployed serverless applications using AWS Lambda, API Gateway, and DynamoDB.",
-                tech: ["Lambda", "API Gateway", "DynamoDB", "Python"],
-                icon: "⚡"
+                title: "Password Breach Monitor",
+                description: "Automated security monitoring system using HaveIBeenPwned API to detect compromised credentials. Built with Lambda for daily breach checks, DynamoDB for history tracking, EventBridge for scheduling, and SNS for instant email alerts. Implements smart deduplication and actionable security recommendations.",
+                tech: ["Lambda", "EventBridge", "DynamoDB", "SNS"],
+                icon: "🔒",
+                github: "https://github.com/awswani/password-breach-monitor"
               },
               {
                 title: "Serverless Contact Form",
