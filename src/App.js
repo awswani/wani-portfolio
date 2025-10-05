@@ -384,7 +384,7 @@ function App() {
                 className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 <Download size={20} />
-                View Resume
+                Download Resume
               </a>
             </div>
 
