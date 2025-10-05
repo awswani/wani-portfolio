@@ -1,0 +1,5 @@
+# Allow PDFs to be served directly - must be before catch-all
+/*.pdf   /*.pdf   200!
+
+# SPA fallback for all other routes
+/*  /index.html  200
